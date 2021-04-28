@@ -378,7 +378,7 @@ def start_run(processID, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE, sub_storie
 
 
         #tfidf for sentences 
-        if len(preprocessed_sentences) < 7:
+        if len(preprocessed_sentences) < 7 or len(preprocessed_abs_sentences_list) < 3:
             continue
         bodyandtitle = preprocessed_sentences.copy()
         bodyandtitle.append(preprocess_raw_sent(title.lower()))
@@ -430,10 +430,10 @@ def start_run(processID, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE, sub_storie
             print(file_name)
             print(best_individual)
             Solver.show(best_individual, file_name)
-    rouge1, rouge2, rougel = evaluate_rouge(save_path)
-    result_file = '{}.{}'.format(processID, 'txt')
-    fp = open(result_file, 'w', encoding='utf-8')
-    fp.write('r1: {}, r2: {}, rL: {} '.format(rouge1, rouge2, rougel))
+    # rouge1, rouge2, rougel = evaluate_rouge(save_path)
+    # result_file = '{}.{}'.format(processID, 'txt')
+    # fp = open(result_file, 'w', encoding='utf-8')
+    # fp.write('r1: {}, r2: {}, rL: {} '.format(rouge1, rouge2, rougel))
         
     
 def multiprocess(num_process, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE, stories, save_path):
@@ -442,7 +442,7 @@ def multiprocess(num_process, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE, stori
     set_of_docs = [stories[i:i + n] for i in range(0, len(stories), n)] 
     for index, sub_stories in enumerate(set_of_docs):
         p = multiprocessing.Process(target=start_run, args=(
-            index, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE,sub_stories, save_path[index], 0))
+            index, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE,sub_stories, save_path[index], 3))
         processes.append(p)
         p.start()      
     for p in processes:
