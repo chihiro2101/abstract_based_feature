@@ -7,7 +7,7 @@ import statistics as sta
 
 
 def main():
-    hyp = 'hyp1'
+    hyp = 'hyp'
     raw_ref = 'abstracts'
     FJoin = os.path.join
     files_hyp = [FJoin(hyp, f) for f in os.listdir(hyp)]
