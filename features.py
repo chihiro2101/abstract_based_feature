@@ -134,11 +134,11 @@ class METRIC(object):
             le  = 0.3   
             fit = rel*self.relationT() + covABS*self.CoverABS() + le*self.leng() + cover*self.Cov() 
         elif self.order_params == 4:
-            rel = 0.25
-            covABS = 0.15
-            cover = 0.15
-            le  = 0.25   
-            rouge = 0.2
+            rel = 0.1
+            covABS = 0.2
+            cover = 0.2
+            le  = 0.25  
+            rouge = 0.3
             fit = rel*self.relationT() + covABS*self.CoverABS() + le*self.leng() + cover*self.Cov()  + rouge*self.rouge_scores()
         elif self.order_params == 5:
             rel = 0.3
