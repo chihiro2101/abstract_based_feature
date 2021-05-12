@@ -147,6 +147,12 @@ class METRIC(object):
             le  = 0.3   
             rouge = 0.15
             fit = rel*self.relationT() + covABS*self.CoverABS() + le*self.leng() + cover*self.Cov()  + rouge*self.rouge_scores()
+        elif self.order_params == 6:
+            covABS = 0.3
+            cover = 0.2
+            le  = 0.3   
+            rouge = 0.2
+            fit = covABS*self.CoverABS() + le*self.leng() + cover*self.Cov()  + rouge*self.rouge_scores()
         return fit
 
     # def GLS(self):
