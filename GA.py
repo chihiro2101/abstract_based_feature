@@ -262,12 +262,10 @@ class Summerizer(object):
     
         while count < self.max_generation or self.check_best(tmp_arr) == True:
             population = self.selection(population)
-            best_individual = sorted(population, key=lambda x: x[1], reverse=True)[1]
+            best_individual = sorted(population, key=lambda x: x[1], reverse=True)[0]
             best_fitness_value = best_individual[1]  
             tmp_arr.append(best_fitness_value)          
             count +=1
-        # for i in tqdm(range(self.max_generation)):
-        #     population = self.selection(population)
         return self.find_best_individual(population)
     
     
@@ -459,9 +457,9 @@ def main():
     stories = load_docs(directory)
     start_time = time.time()
     
-    multiprocess(5, POPU_SIZE, MAX_GEN, CROSS_RATE,
-                 MUTATE_RATE, stories, save_path)
-    # start_run(1, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE, stories, save_path[0], 7)
+    # multiprocess(5, POPU_SIZE, MAX_GEN, CROSS_RATE,
+    #              MUTATE_RATE, stories, save_path)
+    start_run(1, POPU_SIZE, MAX_GEN, CROSS_RATE, MUTATE_RATE, stories, save_path[0], 7)
 
     print("--- %s mins ---" % ((time.time() - start_time)/(60.0*len(stories))))
 
